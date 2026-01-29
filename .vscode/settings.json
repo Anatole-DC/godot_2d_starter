@@ -1,7 +1,7 @@
 {
     "godot_tools.editor_path": "/usr/bin/godot",
     "godotTools.lsp.serverPort": 6005,
-    "godotTools.editorPath.godot4": "C:\\Users\\adech\\Apps\\Godot_v4.5.1-stable_win64.exe\\Godot_v4.5.1-stable_win64.exe",
+    "godotTools.editorPath.godot4": "C:\\Users\\adech\\Apps\\Godot_v4.6-stable_win64.exe\\Godot_v4.6-stable_win64.exe",
     "files.exclude": {
         "**/*.gd.uid": true,
         ".godot/": true,
