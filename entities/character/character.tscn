@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://h5rqev2b16ur"]
+[gd_scene format=3 uid="uid://h5rqev2b16ur"]
 
 [ext_resource type="Texture2D" uid="uid://dkitmty4xh75q" path="res://assets/sprites/knight.png" id="1_0c2ax"]
 [ext_resource type="Script" uid="uid://ido55ik7j1pr" path="res://scripts/character.gd" id="1_6i0tm"]
@@ -192,11 +192,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0c2ax"]
 radius = 5.0
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" unique_id=1830700036]
 collision_layer = 2
 script = ExtResource("1_6i0tm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=955884476]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_l75fg")
 animation = &"run"
@@ -204,6 +204,14 @@ autoplay = "idle"
 frame = 6
 frame_progress = 0.714082
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=584647231]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_0c2ax")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1178375716]
+position = Vector2(0, -5)
+target_position = Vector2(6, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1982137308]
+position = Vector2(0, -5)
+target_position = Vector2(-6, 0)
