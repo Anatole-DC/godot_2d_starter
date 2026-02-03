@@ -36,8 +36,6 @@ jobs:
       - name: Build
         run: |
           mkdir -v -p build/${{ matrix.target }}
-          EXPORT_DIR="$(readlink -f build)"
-          cd $PROJECT_PATH
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --headless --verbose --export-release ${{ matrix.target }} "build/${{ matrix.target }}/${{ matrix.target_name }}"
       
       - name: Upload Artifact
