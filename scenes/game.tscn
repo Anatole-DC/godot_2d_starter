@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bauk6pkph7aa5"]
+[gd_scene format=4 uid="uid://bauk6pkph7aa5"]
 
 [ext_resource type="PackedScene" uid="uid://wgx5hdknmhko" path="res://entities/environements/platforms/kill_zone.tscn" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://h5rqev2b16ur" path="res://entities/character/character.tscn" id="1_uwrxv"]
@@ -51,40 +51,83 @@ _data = {
 &"move_platform": SubResource("Animation_lbhrr")
 }
 
-[node name="Game" type="Node2D"]
+[sub_resource type="Animation" id="Animation_0tnpc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(516, 95)]
+}
 
-[node name="KillZone" parent="." instance=ExtResource("1_p57ef")]
+[sub_resource type="Animation" id="Animation_vtaks"]
+resource_name = "up_and_down"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(516, 190), Vector2(516, 95)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvpfn"]
+_data = {
+&"RESET": SubResource("Animation_0tnpc"),
+&"up_and_down": SubResource("Animation_vtaks")
+}
+
+[node name="Game" type="Node2D" unique_id=1800105273]
+
+[node name="KillZone" parent="." unique_id=263050068 instance=ExtResource("1_p57ef")]
 position = Vector2(225, 220)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=515291157]
 shape = SubResource("WorldBoundaryShape2D_p57ef")
 debug_color = Color(0.9937001, 0, 0.24056926, 0.41960785)
 
-[node name="WorldLimit" parent="." instance=ExtResource("2_yqjtg")]
+[node name="WorldLimit" parent="." unique_id=21223972 instance=ExtResource("2_yqjtg")]
 position = Vector2(222, 292)
 
-[node name="WorldLevel" type="Node2D" parent="."]
+[node name="WorldLevel" type="Node2D" parent="." unique_id=1432707441]
 
-[node name="WorldSprites" parent="WorldLevel" instance=ExtResource("3_lnu2h")]
+[node name="WorldSprites" parent="WorldLevel" unique_id=1386457681 instance=ExtResource("3_lnu2h")]
 position = Vector2(163, 122)
-tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAABAAEAAAABAAAAAAACAAEAAAAAAAEAAAADAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAAJAAEAAAABAAEAAAAIAAEAAAAAAAEAAAAKAAEAAAAAAAEAAAALAAEAAAAAAAEAAAAFAAAAAAAJAAAAAAAGAAAAAAAKAAAAAAAHAAAAAAALAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAJAAAAAAAAAAEAAAAKAAAAAAABAAEAAAALAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAEAP//AAAAAAUAAAAEAP7/AAAAAAMAAAADAP3/AAAAAAMAAAADAP7/AAAAAAQAAAADAP//AAAAAAUAAAAHAP3/AAAAAAIAAAAAAP//AAABAAUAAAALAP7/AAABAAUAAAAKAP7/AAABAAMAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD//wEAAAAAAAEAAAD//wAAAAAAAAAAAAD9/wUAAAAAAAEAAAD+/wUAAAAAAAEAAAD//wUAAAAAAAEAAAAIAAUAAAAAAAEAAAAJAAUAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAQAAAAAAAEAAAALAAMAAAAAAAEAAAALAAIAAAABAAAAAAAKAAQAAAAAAAAAAAALAAUAAAAAAAEAAAAMAAUAAAAAAAEAAAAMAAQAAAABAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAEAAAAMAP//AAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAMAAAAEAAgAAAANAP//AAAAAAEAAAAOAP//AAAAAAAAAAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAARAP//AAAAAAAAAAASAP//AAAAAAAAAAATAP//AAAAAAAAAAANAP7/AAAAAAAAAAAUAP7/AAAAAAAAAAAUAP//AAAAAAEAAAANAAAAAAAAAAEAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAAOAAAAAAAAAAEAAAAOAAEAAAABAAEAAAAOAAIAAAAAAAEAAAAOAAMAAAAAAAEAAAAOAAQAAAABAAAAAAAOAAUAAAAAAAEAAAAPAAAAAAAAAAEAAAAPAAEAAAAAAAEAAAAPAAIAAAAAAAEAAAAPAAMAAAAAAAEAAAAPAAQAAAAAAAEAAAAPAAUAAAAAAAEAAAAQAAAAAAAAAAEAAAAQAAEAAAAAAAEAAAAQAAIAAAAAAAEAAAAQAAMAAAABAAEAAAAQAAQAAAAAAAEAAAAQAAUAAAAAAAEAAAARAAAAAAABAAAAAAARAAEAAAAAAAEAAAARAAIAAAAAAAEAAAARAAMAAAAAAAEAAAARAAQAAAABAAAAAAARAAUAAAAAAAEAAAASAAAAAAAAAAEAAAASAAEAAAAAAAEAAAASAAIAAAAAAAEAAAASAAMAAAAAAAEAAAASAAQAAAAAAAEAAAASAAUAAAAAAAEAAAATAAAAAAAAAAEAAAATAAEAAAABAAAAAAATAAIAAAAAAAEAAAATAAMAAAAAAAEAAAATAAQAAAAAAAEAAAATAAUAAAAAAAEAAAAUAAAAAAAAAAEAAAAUAAEAAAAAAAEAAAAUAAIAAAAAAAEAAAAUAAMAAAABAAAAAAAUAAQAAAAAAAEAAAAUAAUAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAABAAEAAAABAAAAAAACAAEAAAAAAAEAAAADAAEAAAAAAAEAAAAEAAEAAAAAAAEAAAAJAAEAAAABAAEAAAAIAAEAAAAAAAEAAAAKAAEAAAAAAAEAAAALAAEAAAAAAAEAAAAFAAAAAAAJAAAAAAAGAAAAAAAKAAAAAAAHAAAAAAALAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAJAAAAAAAAAAEAAAAKAAAAAAABAAEAAAALAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAEAP//AAAAAAUAAAAEAP7/AAAAAAMAAAADAP3/AAAAAAMAAAADAP7/AAAAAAQAAAADAP//AAAAAAUAAAAHAP3/AAAAAAIAAAAAAP//AAABAAUAAAALAP7/AAABAAUAAAAKAP7/AAABAAMAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD//wEAAAAAAAEAAAD//wAAAAAAAAAAAAD9/wUAAAAAAAEAAAD+/wUAAAAAAAEAAAD//wUAAAAAAAEAAAAIAAUAAAAAAAEAAAAJAAUAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAQAAAAAAAEAAAALAAMAAAAAAAEAAAALAAIAAAABAAAAAAAKAAQAAAAAAAAAAAALAAUAAAAAAAEAAAAMAAUAAAAAAAEAAAAMAAQAAAABAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAEAAAAMAP//AAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAMAAAAEAAgAAAANAP//AAAAAAEAAAAOAP//AAAAAAAAAAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAARAP//AAAAAAAAAAASAP//AAAAAAAAAAATAP//AAAAAAAAAAANAP7/AAAAAAAAAAAUAP7/AAAAAAAAAAAUAP//AAAAAAEAAAANAAAAAAAAAAEAAAANAAEAAAAAAAEAAAANAAIAAAAAAAEAAAANAAMAAAAAAAEAAAANAAQAAAAAAAEAAAANAAUAAAAAAAEAAAAOAAAAAAAAAAEAAAAOAAEAAAABAAEAAAAOAAIAAAAAAAEAAAAOAAMAAAAAAAEAAAAOAAQAAAABAAAAAAAOAAUAAAAAAAEAAAAPAAAAAAAAAAEAAAAPAAQAAAAAAAEAAAAPAAUAAAAAAAEAAAAQAAAAAAAAAAEAAAAQAAQAAAAAAAEAAAAQAAUAAAAAAAEAAAARAAAAAAABAAAAAAARAAQAAAABAAAAAAARAAUAAAAAAAEAAAASAAAAAAAAAAEAAAASAAQAAAAAAAEAAAASAAUAAAAAAAEAAAATAAAAAAAAAAEAAAATAAQAAAAAAAEAAAATAAUAAAAAAAEAAAAUAAAAAAAAAAEAAAAUAAQAAAAAAAEAAAAUAAUAAAABAAAAAAAPAAEAAAAAAAEAAAAQAAEAAAAAAAEAAAARAAEAAAAAAAEAAAASAAEAAAAAAAEAAAATAAEAAAAAAAEAAAAUAAEAAAAAAAEAAAA=")
 
-[node name="MovingPlatform" parent="WorldLevel" instance=ExtResource("4_lbhrr")]
+[node name="HorizontalMovingPlatform" parent="WorldLevel" unique_id=1473108999 instance=ExtResource("4_lbhrr")]
 position = Vector2(180, 191)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLevel/MovingPlatform"]
-libraries = {
-&"": SubResource("AnimationLibrary_p57ef")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLevel/HorizontalMovingPlatform" unique_id=1723821276]
+libraries/ = SubResource("AnimationLibrary_p57ef")
+autoplay = &"RESET"
 
-[node name="CharacterLevel" type="Node2D" parent="."]
+[node name="VerticalMovingPlatform" parent="WorldLevel" unique_id=273932227 instance=ExtResource("4_lbhrr")]
+position = Vector2(516, 95)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLevel/VerticalMovingPlatform" unique_id=1204329583]
+libraries/ = SubResource("AnimationLibrary_kvpfn")
+autoplay = &"up_and_down"
+
+[node name="CharacterLevel" type="Node2D" parent="." unique_id=355528291]
 z_index = 1
 
-[node name="Character" parent="CharacterLevel" instance=ExtResource("1_uwrxv")]
-position = Vector2(187, 122)
+[node name="Character" parent="CharacterLevel" unique_id=2012595942 instance=ExtResource("1_uwrxv")]
+position = Vector2(187, 123)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterLevel/Character"]
+[node name="Camera2D" type="Camera2D" parent="CharacterLevel/Character" unique_id=1006926161]
 zoom = Vector2(3, 3)
 limit_left = 80
 limit_right = 760
@@ -92,40 +135,49 @@ limit_bottom = 215
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Coins" type="Node" parent="CharacterLevel"]
+[node name="Coins" type="Node" parent="CharacterLevel" unique_id=1111194248]
 
-[node name="Coin" parent="CharacterLevel/Coins" instance=ExtResource("5_iywne")]
+[node name="Coin" parent="CharacterLevel/Coins" unique_id=1630624618 instance=ExtResource("5_iywne")]
 position = Vector2(267, 118)
 
-[node name="Coin2" parent="CharacterLevel/Coins" instance=ExtResource("5_iywne")]
+[node name="Coin2" parent="CharacterLevel/Coins" unique_id=1335966348 instance=ExtResource("5_iywne")]
 position = Vector2(230, 181)
 
-[node name="Coin3" parent="CharacterLevel/Coins" instance=ExtResource("5_iywne")]
+[node name="Coin3" parent="CharacterLevel/Coins" unique_id=983417079 instance=ExtResource("5_iywne")]
 position = Vector2(363, 99)
 
-[node name="ennemies" type="Node" parent="CharacterLevel"]
+[node name="Coin4" parent="CharacterLevel/Coins" unique_id=1587341666 instance=ExtResource("5_iywne")]
+position = Vector2(411, 180)
 
-[node name="SlimeEnemy" parent="CharacterLevel/ennemies" instance=ExtResource("7_u5sy4")]
+[node name="Coin5" parent="CharacterLevel/Coins" unique_id=804003928 instance=ExtResource("5_iywne")]
+position = Vector2(443, 180)
+
+[node name="Coin6" parent="CharacterLevel/Coins" unique_id=1542055720 instance=ExtResource("5_iywne")]
+position = Vector2(475, 180)
+
+[node name="ennemies" type="Node" parent="CharacterLevel" unique_id=110612038]
+
+[node name="SlimeEnemy" parent="CharacterLevel/ennemies" unique_id=1590144145 instance=ExtResource("7_u5sy4")]
 position = Vector2(399, 94)
 
-[node name="ForegroundLevel" type="Node2D" parent="."]
+[node name="ForegroundLevel" type="Node2D" parent="." unique_id=1841433714]
 z_index = 2
 
-[node name="WorldSprites" parent="ForegroundLevel" instance=ExtResource("3_lnu2h")]
+[node name="WorldSprites" parent="ForegroundLevel" unique_id=1867849851 instance=ExtResource("3_lnu2h")]
 position = Vector2(211, 202)
 tile_map_data = PackedByteArray("AAD///r/AAAAAAcAAAA=")
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=709989333]
 unique_name_in_owner = true
 script = ExtResource("8_gee14")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="GameManager"]
+[node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=750326372]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameManager/CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameManager/CanvasLayer" unique_id=353410972]
 offset_right = 120.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="GameManager/CanvasLayer/HBoxContainer"]
+[node name="Label" type="Label" parent="GameManager/CanvasLayer/HBoxContainer" unique_id=1626560116]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("9_0tnpc")
