@@ -51,7 +51,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,9 +59,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Unzip archive
-        run: |
-          unzip build/web.zip
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: ./build/web
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
