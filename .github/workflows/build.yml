@@ -2,7 +2,7 @@ name: Build godot game
 
 on:
   push:
-      branches: ['master', 'feat/deploy-game']
+      branches: ['master']
   workflow_dispatch:
 
 env:
