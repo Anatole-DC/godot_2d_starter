@@ -62,7 +62,7 @@ jobs:
       - name: Download Windows artifact
         uses: actions/download-artifact@v4
         with:
-          name: web-build
+          name: web
           path: ./build/web
 
       - name: Upload artifact
