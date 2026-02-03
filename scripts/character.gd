@@ -6,6 +6,8 @@ const PLAYER_SPEED: int = 100
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
+@onready var jump_player = $Jump
+@onready var death_player = $Death
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction: int = 1
@@ -13,6 +15,7 @@ var facing_direction: bool = false
 
 enum PlayerState {IDLE, MOVING, JUMPING, RUNNING, FALLING, COLLIDING, SLIDING}
 var state: PlayerState = PlayerState.IDLE: set = set_player_state
+
 
 func set_player_state(new_state: PlayerState) -> void:
 	var previous_state: PlayerState = state
@@ -23,6 +26,9 @@ func set_player_state(new_state: PlayerState) -> void:
 	
 	if state == PlayerState.IDLE:
 		animated_sprite.play("idle")
+	
+	if state == PlayerState.JUMPING:
+		jump_player.play()
 
 func _physics_process(delta):
 	if velocity.y > 0 and not is_on_floor():
@@ -71,4 +77,5 @@ func _physics_process(delta):
 	move_and_slide()
 
 func die():
+	death_player.play()
 	animated_sprite.play("death")

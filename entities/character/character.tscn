@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dkitmty4xh75q" path="res://assets/sprites/knight.png" id="1_0c2ax"]
 [ext_resource type="Script" uid="uid://ido55ik7j1pr" path="res://scripts/character.gd" id="1_6i0tm"]
+[ext_resource type="AudioStream" uid="uid://bh1q2721ro6p" path="res://assets/sounds/jump.wav" id="3_7315l"]
+[ext_resource type="AudioStream" uid="uid://cec28gbljt8i1" path="res://assets/sounds/power_up.wav" id="4_2ltml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l75fg"]
 atlas = ExtResource("1_0c2ax")
@@ -215,3 +217,9 @@ target_position = Vector2(6, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1982137308]
 position = Vector2(0, -5)
 target_position = Vector2(-6, 0)
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=84781605]
+stream = ExtResource("3_7315l")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=2089076738]
+stream = ExtResource("4_2ltml")
