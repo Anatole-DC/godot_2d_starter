@@ -59,6 +59,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Unzip archive
+        run: |
+          unzip build/web.zip
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
